@@ -8,8 +8,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <style>
-@font-face{font-family:"Carlito";src:url("fonts/Carlito-Regular.ttf") format("truetype");font-weight:400;font-display:swap}
-@font-face{font-family:"Carlito";src:url("fonts/Carlito-Bold.ttf") format("truetype");font-weight:700;font-display:swap}
+@font-face{font-family:"Carlito";src:url("Carlito-Regular.ttf") format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:"Carlito";src:url("Carlito-Bold.ttf") format("truetype");font-weight:700;font-display:swap}
 /* Layout: cabeçalho de projeto + barra do grupo + percurso EDP em passos; cada passo é uma vista. Cores do ICSE a afinar: trocar só estes tokens. */
 :root{
   /* Identidade STE(A)M Vision (logótipo) + worksheets do módulo (barras azuis, Calibri) */
@@ -280,7 +280,7 @@ details.card > summary{cursor:pointer;font-size:1.15rem;color:var(--accent);list
 <header class="top">
   <div class="wrap">
     <div class="brand">
-      <img class="logo" src="img/logo.png" alt="ICSE STE(A)M Vision" width="1028" height="472">
+      <img class="logo" src="logo.png" alt="ICSE STE(A)M Vision" width="1028" height="472">
       <div>
         <small>ICSE STE(A)M Vision · Digital Transformation · From Trash to Tech</small>
         <h1 data-t="title"></h1>
@@ -353,7 +353,7 @@ details.card > summary{cursor:pointer;font-size:1.15rem;color:var(--accent);list
   <div class="card">
     <div class="stephead"><span class="n">01</span><h3 data-t="sPred"></h3></div>
     <div class="grid2">
-      <div class="only-virtual"><div class="stage"><img src="img/exterior.jpg" alt="" width="1024" height="559"></div></div>
+      <div class="only-virtual"><div class="stage"><img src="exterior.jpg" alt="" width="1024" height="559"></div></div>
       <div class="only-physical note" hidden><p data-t="physClosed"></p></div>
       <div class="qs">
         <div class="field"><label for="p-q1" data-t="pq1"></label><textarea id="p-q1" data-bind="pred.q1"></textarea></div>
@@ -366,14 +366,14 @@ details.card > summary{cursor:pointer;font-size:1.15rem;color:var(--accent);list
     <div class="stephead"><span class="n">02</span><h3 data-t="sDis"></h3></div>
     <div class="only-virtual qs">
       <p data-t="disV"></p>
-      <div class="stage" id="stage-expl"><img src="img/explodida.jpg" alt="" width="1024" height="559"></div>
+      <div class="stage" id="stage-expl"><img src="explodida.jpg" alt="" width="1024" height="559"></div>
     </div>
     <div class="only-physical note" hidden><p data-t="disP"></p></div>
   </div>
 
   <div class="card">
     <div class="stephead"><span class="n">03</span><h3 data-t="ws1"></h3></div>
-    <img class="sketch" src="img/sketch_matriz.jpg" alt="" width="449" height="506">
+    <img class="sketch" src="sketch_matriz.jpg" alt="" width="449" height="506">
     <div class="tablewrap">
       <table id="w1">
         <thead><tr><th>#</th><th data-t="colComp"></th><th data-t="colFunc"></th><th data-t="colCond"></th><th data-t="colReuse"></th><th></th></tr></thead>
@@ -415,7 +415,7 @@ details.card > summary{cursor:pointer;font-size:1.15rem;color:var(--accent);list
     <div id="ia-work" class="grid2">
       <div class="qs">
         <p class="muted" data-t="iaTap"></p>
-        <div class="stage ia-stage" id="ia-stage"><img id="ia-img" src="img/errada.jpg" alt="" width="1024" height="559"></div>
+        <div class="stage ia-stage" id="ia-stage"><img id="ia-img" src="errada.jpg" alt="" width="1024" height="559"></div>
         <div class="row">
           <button class="btn ghost small" type="button" id="ia-expert"></button>
           <button class="btn ghost small" type="button" id="ia-undo" data-t="undo"></button>
@@ -431,8 +431,8 @@ details.card > summary{cursor:pointer;font-size:1.15rem;color:var(--accent);list
     <div id="ia-compare" class="qs" hidden>
       <p class="muted" data-t="cmpText2"></p>
       <div class="stage compare" id="cmp">
-        <img src="img/correta.jpg" alt="" width="1024" height="559">
-        <div class="over" id="cmp-over"><img src="img/quase.jpg" alt="" width="1024" height="559"></div>
+        <img src="correta.jpg" alt="" width="1024" height="559">
+        <div class="over" id="cmp-over"><img src="quase.jpg" alt="" width="1024" height="559"></div>
         <div class="divider" id="cmp-div"></div>
       </div>
       <label class="lbl" for="cmp-range" data-t="compare"></label>
@@ -471,7 +471,7 @@ details.card > summary{cursor:pointer;font-size:1.15rem;color:var(--accent);list
   <div class="lab">
     <div class="card">
       <h3 data-t="choose1"></h3>
-      <div class="stage only-virtual" id="stage-test"><img src="img/teste.jpg" alt="" width="1024" height="559"></div>
+      <div class="stage only-virtual" id="stage-test"><img src="teste.jpg" alt="" width="1024" height="559"></div>
       <div class="complist" id="complist"></div>
       <p class="only-physical muted" hidden data-t="physSim"></p>
     </div>
@@ -530,7 +530,7 @@ details.card > summary{cursor:pointer;font-size:1.15rem;color:var(--accent);list
 
   <div class="card">
     <div class="stephead"><span class="n">02</span><h3 data-t="ws2"></h3></div>
-    <img class="sketch" src="img/sketch_teste.jpg" alt="" width="462" height="343">
+    <img class="sketch" src="sketch_teste.jpg" alt="" width="462" height="343">
     <p class="muted" data-t="w2Legend"></p>
     <div class="tablewrap">
       <table id="w2">
@@ -1138,7 +1138,7 @@ document.addEventListener("DOMContentLoaded",()=>{$("#submit-btn").onclick=()=>{
 
 /* ===== Word (.docx) com o estilo das worksheets ===== */
 let LOGO_B64=null;
-async function logoB64(){if(LOGO_B64)return LOGO_B64;const r=await fetch("img/logo.png");const u=new Uint8Array(await r.arrayBuffer());let s="";for(let i=0;i<u.length;i+=0x8000)s+=String.fromCharCode.apply(null,u.subarray(i,i+0x8000));LOGO_B64=btoa(s);return LOGO_B64;}
+async function logoB64(){if(LOGO_B64)return LOGO_B64;const r=await fetch("logo.png");const u=new Uint8Array(await r.arrayBuffer());let s="";for(let i=0;i<u.length;i+=0x8000)s+=String.fromCharCode.apply(null,u.subarray(i,i+0x8000));LOGO_B64=btoa(s);return LOGO_B64;}
 function docxXML(secs,title,hasLogo){
   const x=v=>String(v??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])).replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g,"");
   const runs=(txt,o={})=>String(txt??"").split("\n").map((ln,i)=>`<w:r><w:rPr>${o.b?"<w:b/>":""}${o.i?"<w:i/>":""}${o.color?`<w:color w:val="${o.color}"/>`:""}<w:sz w:val="${o.sz||22}"/></w:rPr>${i?"<w:br/>":""}<w:t xml:space="preserve">${x(ln)}</w:t></w:r>`).join("");
@@ -1252,16 +1252,16 @@ const PARTS=[
 
 /* Erros das imagens de IA */
 const IA={
- A:{img:"img/errada.jpg",marks:[
+ A:{img:"errada.jpg",marks:[
   {x:622,y:232,t:["O motor está ao meio, sozinho: não engrena em nada, por isso o movimento não chega às rodas.","The motor sits in the middle on its own: it meshes with nothing, so no movement reaches the wheels.","Der Motor sitzt allein in der Mitte: Er greift in nichts ein, also kommt keine Bewegung bei den Rädern an.","Le moteur est seul au milieu : il n'engrène rien, donc aucun mouvement n'arrive aux roues.","De motor zit alleen in het midden: hij grijpt nergens in, dus er komt geen beweging bij de wielen.","Motor je sám uprostřed: do ničeho nezabírá, takže se pohyb ke kolům nedostane.","Motor ortada tek başına duruyor: hiçbir dişliye geçmiyor, bu yüzden hareket tekerleklere ulaşmıyor."]},
   {x:626,y:186,t:["Engrenagem de latão no eixo da frente, sem qualquer ligação ao motor.","Brass gear on the front axle, with no connection to the motor.","Messingzahnrad auf der Vorderachse, ohne Verbindung zum Motor.","Engrenage en laiton sur l'essieu avant, sans aucun lien avec le moteur.","Messing tandwiel op de vooras, zonder verbinding met de motor.","Mosazné ozubené kolo na přední nápravě, bez spojení s motorem.","Ön aksta, motorla hiçbir bağlantısı olmayan pirinç bir dişli."]},
   {x:636,y:362,t:["A engrenagem grande aparece de frente, mas o eixo é horizontal: vista de cima devia aparecer de perfil.","The large gear faces the camera, but the axle is horizontal: seen from above it should appear edge-on.","Das große Zahnrad zeigt zur Kamera, die Achse liegt aber waagerecht: Von oben müsste man es von der Seite sehen.","Le grand engrenage est vu de face, mais l'essieu est horizontal : vu d'en haut, il devrait apparaître de profil.","Het grote tandwiel staat naar de camera gericht, maar de as ligt horizontaal: van bovenaf zou je het van opzij moeten zien.","Velké ozubené kolo je natočené čelem k fotoaparátu, ale náprava je vodorovná: shora by mělo být vidět z boku.","Büyük dişli kameraya dönük, ama aks yatay: yukarıdan bakınca yandan görünmesi gerekirdi."]},
   {x:752,y:372,t:["Dois interruptores: um no chassis e outro solto, fora do carro, com fios a entrar.","Two switches: one on the chassis and a loose one outside the car, with wires going in.","Zwei Schalter: einer auf dem Fahrgestell und ein loser außerhalb des Autos, mit hineinführenden Kabeln.","Deux interrupteurs : un sur le châssis et un autre, libre, hors de la voiture, avec des fils qui entrent.","Twee schakelaars: één op het chassis en een losse buiten de auto, met draden die naar binnen lopen.","Dva vypínače: jeden na podvozku a druhý volný mimo auto, s dráty vedoucími dovnitř.","İki anahtar: biri şaside, diğeri arabanın dışında serbest ve içeri giren kablolarla."]},
   {x:612,y:410,t:["Não há espaço para duas pilhas AA: o suporte reduz-se a duas molas.","There is no room for two AA cells: the holder is reduced to two springs.","Für zwei AA-Batterien ist kein Platz: Der Halter besteht nur aus zwei Federn.","Il n'y a pas de place pour deux piles AA : le support se réduit à deux ressorts.","Er is geen plaats voor twee AA-batterijen: de houder bestaat alleen uit twee veren.","Pro dvě baterie AA tu není místo: držák tvoří jen dvě pružinky.","İki AA pil için yer yok: pil yuvası iki yaydan ibaret."]}]},
- B:{img:"img/quase2.jpg",marks:[
+ B:{img:"quase2.jpg",marks:[
   {x:744,y:432,t:["A engrenagem branca aparece de frente, como um disco, mas está num eixo horizontal. Vista de cima devia ver-se de perfil, e assim o pinhão do motor não engrenaria.","The white gear faces the camera as a disc, yet it sits on a horizontal axle. From above it should be edge-on; as drawn, the motor pinion could not mesh with it.","Das weiße Zahnrad ist als Scheibe von vorn zu sehen, sitzt aber auf einer waagerechten Achse. Von oben müsste man es von der Seite sehen; so gezeichnet könnte das Motorritzel nicht eingreifen.","L'engrenage blanc est vu de face, comme un disque, alors qu'il est sur un essieu horizontal. Vu d'en haut, il devrait être de profil ; tel quel, le pignon du moteur ne pourrait pas s'y engrener.","Het witte tandwiel is als schijf van voren te zien, maar zit op een horizontale as. Van bovenaf zou het van opzij te zien moeten zijn; zoals getekend kan het rondsel van de motor er niet in grijpen.","Bílé ozubené kolo je vidět zepředu jako kotouč, přestože je na vodorovné nápravě. Shora by mělo být vidět z boku; takto by do něj pastorek motoru nemohl zabírat.","Beyaz dişli yatay bir aks üzerinde olduğu halde disk gibi önden görünüyor. Yukarıdan yandan görünmeliydi; bu çizimle motor pinyonu ona geçemez."]},
   {x:662,y:242,t:["Molas nas duas pontas de cada pilha. Num suporte em série cada pilha tem mola numa ponta e contacto plano na outra.","Springs at both ends of each cell. In a series holder each cell has a spring at one end and a flat contact at the other.","Federn an beiden Enden jeder Batterie. In einem Reihenhalter hat jede Batterie an einem Ende eine Feder und am anderen einen flachen Kontakt.","Des ressorts aux deux extrémités de chaque pile. Dans un support en série, chaque pile a un ressort d'un côté et un contact plat de l'autre.","Veren aan beide kanten van elke batterij. In een serieschakeling heeft elke batterij aan de ene kant een veer en aan de andere een plat contact.","Pružinky na obou koncích každé baterie. V sériovém držáku má každá baterie na jednom konci pružinku a na druhém plochý kontakt.","Her pilin iki ucunda da yay var. Seri pil yuvasında her pilin bir ucunda yay, diğer ucunda düz kontak olur."]}]},
- C:{img:"img/quase.jpg",marks:[
+ C:{img:"quase.jpg",marks:[
   {x:722,y:432,t:["Pinhão preto no eixo traseiro, sem engrenar em nada. Num carro real o pinhão está só na ponta do veio do motor.","Black pinion on the rear axle, meshing with nothing. In a real car the pinion sits only on the end of the motor shaft.","Schwarzes Ritzel auf der Hinterachse, das in nichts eingreift. In einem echten Auto sitzt das Ritzel nur am Ende der Motorwelle.","Pignon noir sur l'essieu arrière, qui n'engrène rien. Dans une vraie voiture, le pignon est seulement au bout de l'axe du moteur.","Zwart rondsel op de achteras dat nergens in grijpt. In een echte auto zit het rondsel alleen aan het eind van de motoras.","Černý pastorek na zadní nápravě, který do ničeho nezabírá. Ve skutečném autě je pastorek jen na konci hřídele motoru.","Arka aksta hiçbir şeye geçmeyen siyah bir pinyon. Gerçek bir arabada pinyon yalnızca motor milinin ucundadır."]},
   {x:744,y:402,t:["A engrenagem branca encosta ao corpo do motor, não ao pinhão: não pode receber movimento.","The white gear touches the motor body, not the pinion: it cannot receive any movement.","Das weiße Zahnrad berührt das Motorgehäuse, nicht das Ritzel: Es kann keine Bewegung aufnehmen.","L'engrenage blanc touche le corps du moteur, pas le pignon : il ne peut recevoir aucun mouvement.","Het witte tandwiel raakt de behuizing van de motor, niet het rondsel: het kan geen beweging ontvangen.","Bílé ozubené kolo se dotýká těla motoru, ne pastorku: nemůže přijímat žádný pohyb.","Beyaz dişli pinyona değil motor gövdesine dokunuyor: hareket alamaz."]},
   {x:662,y:242,t:["Molas nas duas pontas de cada pilha (ver imagem B).","Springs at both ends of each cell (see image B).","Federn an beiden Enden jeder Batterie (siehe Bild B).","Des ressorts aux deux extrémités de chaque pile (voir image B).","Veren aan beide kanten van elke batterij (zie afbeelding B).","Pružinky na obou koncích každé baterie (viz obrázek B).","Her pilin iki ucunda yay (bkz. görsel B)."]}]}
@@ -1732,7 +1732,7 @@ function sections(){
 }
 let FONTS=null;
 async function loadFonts(){if(FONTS)return FONTS;const b64=async u=>{const r=await fetch(u);if(!r.ok)throw new Error("font");const buf=new Uint8Array(await r.arrayBuffer());let s="";for(let i=0;i<buf.length;i+=0x8000)s+=String.fromCharCode.apply(null,buf.subarray(i,i+0x8000));return btoa(s);};
-  FONTS={r:await b64("fonts/Carlito-Regular.ttf"),b:await b64("fonts/Carlito-Bold.ttf")};return FONTS;}
+  FONTS={r:await b64("Carlito-Regular.ttf"),b:await b64("Carlito-Bold.ttf")};return FONTS;}
 const clean=s=>String(s??"").replace(/⎓/g,"DC").replace(/•\)\)/g,"");
 $("#dl-pdf").onclick=async()=>{
   if(!window.jspdf){toast(t("pdfNA"));return;}
@@ -1867,9 +1867,9 @@ function sections(){
   out.push({k:"group",h:t("group"),kv:[[t("group"),g.name],[t("members"),g.members],[t("device"),g.device],[t("mode"),t(v?"virtual":"physical")]]});
   out.push({k:"c1",h:`${t("challenge")} 1 · ${t("ch1")}`,big:true});
   out.push({k:"pred",h:t("secPred"),kv:["pq1","pq2"].map((k,i)=>[t(k),S.pred["q"+(i+1)]])});
-  out.push({k:"w1",deco:{url:"img/sketch_matriz.jpg",w:449,h:506},h:t("ws1"),table:{head:W1C(),rows:w1Rows(),w:[8,45,60,30,27]}});
+  out.push({k:"w1",deco:{url:"sketch_matriz.jpg",w:449,h:506},h:t("ws1"),table:{head:W1C(),rows:w1Rows(),w:[8,45,60,30,27]}});
   out.push({k:"rep",h:t("sRep"),kv:["rep1","rep2","rep3"].map((k,i)=>[t(k),S.rep["r"+(i+1)]])});
-  out.push({k:"w2",deco:{url:"img/sketch_teste.jpg",w:462,h:343},h:t("ws2"),table:{head:W2C(),rows:w2Rows(),w:[34,34,62,26,24]}});
+  out.push({k:"w2",deco:{url:"sketch_teste.jpg",w:462,h:343},h:t("ws2"),table:{head:W2C(),rows:w2Rows(),w:[34,34,62,26,24]}});
   const iakv=[];["A","B","C"].forEach(k=>{const ms=S.ia[k]||[];iakv.push([`${t("image")} ${k}`,ms.length?ms.map((m,i)=>`${i+1}. ${m.t||"—"}`).join("\n"):t("noMarks")]);});
   ["iaQ1","iaQ2"].forEach((k,i)=>iakv.push([t(k),S.iaRefl["r"+(i+1)]]));
   out.push({k:"ia",h:t("iaH"),kv:iakv});
