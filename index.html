@@ -240,6 +240,7 @@ body{font-size:17px}
 .chcard .q{font-style:italic;color:#3d4757}
 .g3d canvas{max-width:100%}
 [hidden]{display:none !important}
+.qs{align-content:start}
 .hs{width:18px !important;height:18px !important;font-size:10px !important;border-width:1.5px !important;opacity:.88}
 .hs:hover,.hs:focus-visible{opacity:1;transform:translate(-50%,-50%) scale(1.25)}
 .pager{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:18px}
@@ -273,6 +274,44 @@ body{font-size:17px}
 details.card > summary{cursor:pointer;font-size:1.15rem;color:var(--accent);list-style-position:inside}
 #guide-t td{font-size:.95rem}
 #guide-t td:first-child{font-weight:700;white-space:normal}
+
+.scn-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:20px;align-items:start}
+@media(max-width:860px){.scn-grid{grid-template-columns:1fr}}
+.scn-tree{width:100%;max-height:250px;display:block;margin-bottom:10px}
+.scn-tree .drawn{stroke-dasharray:1;stroke-dashoffset:1;animation:scnDraw .7s ease forwards}
+.scn-tree .pulse{animation:scnPulse 1.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes scnDraw{to{stroke-dashoffset:0}}
+@keyframes scnPulse{50%{transform:scale(1.35)}}
+.crumbs{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;min-height:1.5em}
+.crumb{background:var(--accent-soft);color:var(--accent);border-radius:99px;padding:3px 10px;font-size:.92rem;animation:scnIn .4s ease both}
+.crumbs .arrow{color:var(--muted)}
+.scn-q{font-size:1.25rem;font-weight:700;margin:6px 0 12px;animation:scnIn .4s ease both}
+.scn-choices{display:grid;gap:10px}
+.scn-choice{justify-content:flex-start;text-align:left;padding:12px 16px;font-size:1.05rem;animation:scnIn .4s ease both}
+.scn-choice:nth-child(2){animation-delay:.08s}.scn-choice:nth-child(3){animation-delay:.16s}
+.scn-choice:hover{background:var(--accent-soft)}
+.scn-end{border-left:6px solid var(--c);background:#fafbfd;padding:12px 16px;border-radius:0 8px 8px 0;margin:6px 0 12px;animation:scnIn .5s ease both}
+.scn-level{font-size:1.2rem;margin:0 0 6px}.scn-level b{color:var(--c)}
+@keyframes scnIn{from{opacity:0;transform:translateY(8px)}}
+.scn-side h3{margin:0 0 10px}
+.meter{margin-bottom:10px}.meter .bar{height:12px;background:#edf1f5;border-radius:99px;overflow:hidden;margin-top:4px}
+.meter .bar i{display:block;height:100%;border-radius:99px;transition:width .9s ease,background .9s}
+.ladder{list-style:none;padding:0;margin:0;display:grid;gap:5px}
+.ladder li{display:flex;align-items:center;gap:8px;padding:5px 10px;border-radius:8px;color:var(--muted);transition:all .4s}
+.ladder .dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--c);flex:none}
+.ladder li.on{background:var(--c);color:#fff;font-weight:700;transform:translateX(6px)}
+.ladder li.on .dot{background:#fff;border-color:#fff}
+.facts{margin-top:14px}.facts summary{cursor:pointer;font-weight:700;color:var(--accent)}.facts p{font-size:.95rem}
+@media (prefers-reduced-motion:reduce){.scn-tree .drawn,.scn-tree .pulse,.crumb,.scn-q,.scn-choice,.scn-end{animation:none;stroke-dashoffset:0}}
+
+.problem{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;align-items:center;margin-bottom:22px}
+.problem:has(.scn-hero){grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)}
+@media(max-width:860px){.problem:has(.scn-hero){grid-template-columns:1fr}}
+.scn-hero{width:100%;border-radius:var(--radius);display:block}
+.eyebrow{text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:var(--mark)}
+.probq{font-size:1.3rem;font-weight:700;color:var(--accent);margin:10px 0 0}
+.sep-ch{border:0;border-top:3px solid var(--lime);margin:34px 0 26px}
+.scn-img{width:100%;max-height:300px;object-fit:cover;object-position:center 40%;border-radius:10px;display:block;margin-bottom:12px;animation:scnIn .5s ease both}
 </style>
 </head>
 <body>
@@ -311,6 +350,12 @@ details.card > summary{cursor:pointer;font-size:1.15rem;color:var(--accent);list
 
 <!-- ============ INÍCIO ============ -->
 <section class="view" id="view-inicio">
+  <div class="problem">
+    <img class="scn-hero" src="scn_hero.jpg" alt="">
+    <div><h2 data-t="probH"></h2><p class="lead" data-t="probP"></p><p class="probq" data-t="probQ"></p></div>
+  </div>
+  <div data-scn="pre"></div>
+  <hr class="sep-ch">
   <div class="qs">
     <h2 data-t="introH"></h2>
     <p class="lead" data-t="introP"></p>
@@ -340,6 +385,7 @@ details.card > summary{cursor:pointer;font-size:1.15rem;color:var(--accent);list
   </div>
   <p class="muted" data-t="storage"></p>
 </section>
+
 
 <!-- ============ LIÇÃO 1 ============ -->
 <section class="view" id="view-licao1" hidden>
@@ -561,6 +607,7 @@ details.card > summary{cursor:pointer;font-size:1.15rem;color:var(--accent);list
   <div class="card" id="mb-help" hidden>
     <div class="stephead"><span class="n">03</span><h3 data-t="mbH"></h3></div>
     <p data-t="mbIntro"></p>
+    <p class="note" data-t="refTest"></p>
     <p><a class="btn ghost small" href="https://makecode.microbit.org" target="_blank" rel="noopener" data-t="openMC"></a> <span class="muted">makecode.microbit.org</span></p>
     <div class="grid3">
       <div class="qs">
@@ -575,6 +622,8 @@ details.card > summary{cursor:pointer;font-size:1.15rem;color:var(--accent);list
           <span class="blk b-logic in1" data-t="b_else"></span>
           <span class="blk b-basic in2" data-t="b_no"></span>
         </div>
+        <p class="hint" data-t="pullHint"></p>
+        <p class="hint" data-t="touchNote"></p>
         <pre class="code" id="code1">pins.setPull(DigitalPin.P1, PinPullMode.PullUp)
 basic.forever(function () {
     if (pins.digitalReadPin(DigitalPin.P1) == 0) {
@@ -592,10 +641,13 @@ basic.forever(function () {
           <span class="blk b-basic" data-t="b_forever"></span>
           <span class="blk b-var in1" data-t="b_setv"></span>
           <span class="blk b-basic in1" data-t="b_shown"></span>
+          <span class="blk b-basic in1" data-t="b_pause"></span>
         </div>
+        <p class="hint" data-t="floatNote"></p>
         <pre class="code" id="code2">basic.forever(function () {
-    let v = pins.analogReadPin(AnalogReadWritePin.P0) * 3.3 / 1023
+    let v = pins.analogReadPin(AnalogPin.P0) * 3.3 / 1023
     basic.showNumber(Math.round(v * 100) / 100)
+    basic.pause(1000)
 })</pre>
         <button class="btn ghost small" type="button" data-copy="code2" data-t="copyCode" style="width:max-content"></button>
       </div>
@@ -738,6 +790,7 @@ basic.forever(function () {
   <button class="btn" type="button" id="word-34" data-t="word34" style="width:max-content"></button>
 </section>
 
+<section class="view" id="view-cenario2" hidden><div data-scn="post"></div></section>
 <!-- ============ EVIDÊNCIAS ============ -->
 <section class="view" id="view-evidencias" hidden>
   <div class="qs">
@@ -882,7 +935,7 @@ colCls:["Classificação","Classification","Einordnung","Classement","Classifica
 colNotes:["Notas","Notes","Notizen","Notes","Notities","Poznámky","Notlar"],
 addRow:["+ Acrescentar linha","+ Add row","+ Zeile hinzufügen","+ Ajouter une ligne","+ Rij toevoegen","+ Přidat řádek","+ Satır ekle"],
 mbH:["Testar com o micro:bit","Testing with the micro:bit","Testen mit dem micro:bit","Tester avec le micro:bit","Testen met de micro:bit","Testování s micro:bitem","micro:bit ile test etmek"],
-mbIntro:["Abram o MakeCode, criem um projeto novo, mudem para JavaScript e colem o código. O programa corre no simulador e também num micro:bit real.","Open MakeCode, create a new project, switch to JavaScript and paste the code. The program runs in the simulator and on a real micro:bit.","Öffnet MakeCode, legt ein neues Projekt an, wechselt zu JavaScript und fügt den Code ein. Das Programm läuft im Simulator und auf einem echten micro:bit.","Ouvrez MakeCode, créez un nouveau projet, passez en JavaScript et collez le code. Le programme tourne dans le simulateur et sur un vrai micro:bit.","Open MakeCode, maak een nieuw project, schakel over naar JavaScript en plak de code. Het programma draait in de simulator en op een echte micro:bit.","Otevřete MakeCode, vytvořte nový projekt, přepněte na JavaScript a vložte kód. Program běží v simulátoru i na skutečném micro:bitu.","MakeCode'u açın, yeni bir proje oluşturun, JavaScript'e geçin ve kodu yapıştırın. Program hem simülatörde hem de gerçek bir micro:bit'te çalışır."],
+mbIntro:["Abram o MakeCode, criem um projeto novo e montem os blocos de cada programa. Também podem mudar para JavaScript e colar o código. O programa corre no simulador e num micro:bit real.","Open MakeCode, create a new project and build the blocks for each program. You can also switch to JavaScript and paste the code. The program runs in the simulator and on a real micro:bit.","Öffnet MakeCode, legt ein neues Projekt an und baut die Blöcke für jedes Programm. Ihr könnt auch zu JavaScript wechseln und den Code einfügen. Das Programm läuft im Simulator und auf einem echten micro:bit.","Ouvrez MakeCode, créez un nouveau projet et assemblez les blocs de chaque programme. Vous pouvez aussi passer en JavaScript et coller le code. Le programme tourne dans le simulateur et sur un vrai micro:bit.","Open MakeCode, maak een nieuw project en bouw de blokken van elk programma. Je kunt ook overschakelen naar JavaScript en de code plakken. Het programma draait in de simulator en op een echte micro:bit.","Otevřete MakeCode, vytvořte nový projekt a sestavte bloky každého programu. Můžete také přepnout na JavaScript a vložit kód. Program běží v simulátoru i na skutečném micro:bitu.","MakeCode'u açın, yeni bir proje oluşturun ve her programın bloklarını kurun. JavaScript'e geçip kodu da yapıştırabilirsiniz. Program hem simülatörde hem de gerçek bir micro:bit'te çalışır."],
 openMC:["Abrir o MakeCode","Open MakeCode","MakeCode öffnen","Ouvrir MakeCode","MakeCode openen","Otevřít MakeCode","MakeCode'u aç"],
 contTitle:["Teste de continuidade","Continuity test","Durchgangsprüfung","Test de continuité","Doorgangstest","Test spojitosti","Süreklilik testi"],
 contDesc:["Crocodilo do pino P1 a uma ponta do componente; da outra ponta ao GND. Se a corrente passa, aparece ✓.","Crocodile clip from pin P1 to one end of the component; from the other end to GND. If current flows, ✓ appears.","Krokodilklemme von Pin P1 an ein Ende des Bauteils, vom anderen Ende an GND. Fließt Strom, erscheint ✓.","Pince crocodile de la broche P1 à une extrémité du composant ; de l'autre extrémité à GND. Si le courant passe, ✓ s'affiche.","Krokodillenklem van pin P1 naar één kant van het onderdeel; van de andere kant naar GND. Loopt er stroom, dan verschijnt ✓.","Krokosvorkou spojte pin P1 s jedním koncem součástky a druhý konec s GND. Pokud prochází proud, objeví se ✓.","P1 pininden bileşenin bir ucuna, diğer ucundan GND'ye timsah kablo bağlayın. Akım geçerse ✓ görünür."],
@@ -1342,7 +1395,8 @@ const NAV=[
  {v:"desafio2",small:()=>`${t("challenge")} 2`,name:()=>t("intro"),lock:true},
  {v:"licao3",small:()=>`${t("lesson")} 3`,name:()=>t("l3"),lock:true},
  {v:"licao4",small:()=>`${t("lesson")} 4`,name:()=>t("l4"),lock:true},
- {v:"evidencias",small:()=>t("export"),name:()=>t("evid"),sep:true}
+ {v:"cenario2",small:()=>t("diagS2"),name:()=>t("diagN"),lock:true,sep:true},
+ {v:"evidencias",small:()=>t("export"),name:()=>t("evid")}
 ];
 function renderNav(){
   const cur=currentView();
@@ -1365,8 +1419,8 @@ $("#mode-physical").onclick=()=>{S.group.mode="physical";save();applyMode();};
 $$("[data-bind]").forEach(el=>{el.value=getPath(el.dataset.bind)||"";el.addEventListener("input",()=>{setPath(el.dataset.bind,el.value);save();});});
 
 /* ===================== ROUTER + BLOQUEIO ===================== */
-const VIEWS=["inicio","licao1","funcionaria","licao2","desafio2","licao3","licao4","evidencias"];
-const LOCKED=["desafio2","licao3","licao4"];
+const VIEWS=["inicio","cenario2","licao1","funcionaria","licao2","desafio2","licao3","licao4","evidencias"];
+const LOCKED=["desafio2","licao3","licao4","cenario2"];
 let pendingView="licao3";
 function currentView(){const h=location.hash.replace("#","");return VIEWS.includes(h)?h:"inicio";}
 function route(){
@@ -1865,6 +1919,7 @@ $("#m-clear").onclick=()=>{mLines=[];mStart=null;drawGear();renderMList();};
 function sections(){
   const g=S.group,out=[],v=isVirtual();
   out.push({k:"group",h:t("group"),kv:[[t("group"),g.name],[t("members"),g.members],[t("device"),g.device],[t("mode"),t(v?"virtual":"physical")]]});
+  out.push({k:"diag",h:t("diagSec"),kv:diagKV()});
   out.push({k:"c1",h:`${t("challenge")} 1 · ${t("ch1")}`,big:true});
   out.push({k:"pred",h:t("secPred"),kv:["pq1","pq2"].map((k,i)=>[t(k),S.pred["q"+(i+1)]])});
   out.push({k:"w1",deco:{url:"sketch_matriz.jpg",w:449,h:506},h:t("ws1"),table:{head:W1C(),rows:w1Rows(),w:[8,45,60,30,27]}});
@@ -1968,12 +2023,153 @@ c2S4:["Etapa 4 · juntar as peças que sobreviveram ao micro:bit para criar um p
 c2Q:["Antes de começar, discutam: que objetos lá de casa deixaram de usar por causa de uma peça pequena? O que teria sido preciso para os reparar?","Before you start, discuss: which objects at home stopped being used because of one small part? What would it have taken to repair them?","Besprecht vor dem Start: Welche Gegenstände zu Hause werden wegen eines kleinen Teils nicht mehr benutzt? Was hätte man gebraucht, um sie zu reparieren?","Avant de commencer, discutez : quels objets de la maison ne sont plus utilisés à cause d'une petite pièce ? Que faudrait-il pour les réparer ?","Bespreek eerst: welke spullen thuis worden niet meer gebruikt door één klein onderdeel? Wat was er nodig geweest om ze te repareren?","Než začnete, proberte: které věci doma přestaly sloužit kvůli jedné malé součástce? Co by bylo potřeba k jejich opravě?","Başlamadan önce tartışın: Evde hangi eşyalar küçük bir parça yüzünden kullanılmaz oldu? Onları onarmak için ne gerekirdi?"],
 c2Btn:["Explorar a Etapa 3","Explore Step 3","Schritt 3 erkunden","Explorer l'étape 3","Stap 3 verkennen","Prozkoumat krok 3","3. adımı keşfet"]
 });
-const SEQ=["inicio","licao1","licao2","funcionaria","desafio2","licao3","licao4","evidencias"];
+const SEQ=["inicio","licao1","licao2","funcionaria","desafio2","licao3","licao4","cenario2","evidencias"];
 function renderPager(v){const el=$("#view-"+v);if(!el)return;let pg=el.querySelector(":scope > .pager");if(!pg){pg=document.createElement("nav");pg.className="pager";el.appendChild(pg);}
   const i=SEQ.indexOf(v),P=SEQ[i-1],N=SEQ[i+1];const nm=k=>{const n=NAV.find(x=>x.v===k);return n?`${n.small()} · ${n.name()}`:"";};
   pg.innerHTML=(P?`<a class="btn ghost" href="#${P}">← ${esc(nm(P))}</a>`:"<span></span>")+(N?`<a class="btn" href="#${N}">${esc(t("next"))}: ${esc(nm(N))} →</a>`:"");}
 
-function renderAll(){renderPager(currentView());renderW3Imgs();renderSubmit();renderGuide();renderInstr();renderW1();if(!$("#w1-keybox").hidden)renderW1Key();renderIA();renderComps();renderW2();if(!$("#w2-keybox").hidden)renderW2Key();renderA4();renderAvail();renderW4();renderDrive();updateStatus();
+Object.assign(I,{
+pullHint:["O bloco «definir pull pin» está em Pins → … mais. Também o encontram escrevendo «pull» na pesquisa.","The 'set pull pin' block is in Pins → … more. You can also find it by typing 'pull' in the search box.","Der Block „setze Pull-Widerstand“ befindet sich unter Pins → … mehr. Ihr findet ihn auch, wenn ihr „pull“ in die Suche eingebt.","Le bloc « définir le tirage de la broche » se trouve dans Broches → … plus. Vous pouvez aussi taper « pull » dans la recherche.","Het blok 'stel pull in' staat bij Pins → … meer. Je vindt het ook door 'pull' in het zoekvak te typen.","Blok „nastav pull pinu“ najdete v Piny → … více. Najdete ho i tak, že do hledání napíšete „pull“.","'Çekme pinini ayarla' bloğu Pinler → … daha fazla bölümündedir. Arama kutusuna 'pull' yazarak da bulabilirsiniz."],
+refTest:["Antes de medir, testem o material: com o programa de continuidade, liguem cada crocodilo do P1 ao GND (deve aparecer ✓); com o programa da tensão, liguem o P0 ao 3V (cerca de 3,3) e ao GND (0).","Before measuring, test your equipment: with the continuity program, connect each crocodile clip from P1 to GND (✓ should appear); with the voltage program, connect P0 to 3V (about 3.3) and to GND (0).","Prüft vor dem Messen das Material: Mit dem Durchgangsprogramm verbindet ihr jede Krokodilklemme von P1 mit GND (✓ sollte erscheinen); mit dem Spannungsprogramm verbindet ihr P0 mit 3V (etwa 3,3) und mit GND (0).","Avant de mesurer, testez le matériel : avec le programme de continuité, reliez chaque pince crocodile de P1 à GND (✓ doit s'afficher) ; avec le programme de tension, reliez P0 à 3V (environ 3,3) puis à GND (0).","Test vóór het meten het materiaal: verbind met het doorgangsprogramma elke krokodillenklem van P1 naar GND (✓ moet verschijnen); verbind met het spanningsprogramma P0 met 3V (ongeveer 3,3) en met GND (0).","Před měřením otestujte vybavení: s programem spojitosti připojte každou krokosvorku z P1 na GND (má se objevit ✓); s programem pro napětí připojte P0 na 3V (asi 3,3) a na GND (0).","Ölçmeden önce malzemeyi test edin: süreklilik programıyla her timsah kabloyu P1'den GND'ye bağlayın (✓ görünmeli); gerilim programıyla P0'ı 3V'a (yaklaşık 3,3) ve GND'ye (0) bağlayın."],
+floatNote:["Com nada ligado ao P0, o micro:bit mostra um valor qualquer (por exemplo 1,1). O pino está «no ar» e essa leitura não tem significado: um instrumento mostra sempre um número, mesmo quando não mede nada.","With nothing connected to P0, the micro:bit shows a random value (for example 1.1). The pin is floating and the reading means nothing: an instrument always shows a number, even when it is not measuring anything.","Ist nichts an P0 angeschlossen, zeigt der micro:bit einen beliebigen Wert (zum Beispiel 1,1). Der Pin ist offen und der Wert bedeutungslos: Ein Messgerät zeigt immer eine Zahl, auch wenn es nichts misst.","Si rien n'est branché sur P0, le micro:bit affiche une valeur quelconque (par exemple 1,1). La broche est flottante et la mesure n'a aucun sens : un instrument affiche toujours un nombre, même quand il ne mesure rien.","Als er niets op P0 is aangesloten, toont de micro:bit een willekeurige waarde (bijvoorbeeld 1,1). De pin zweeft en de meting zegt niets: een instrument toont altijd een getal, ook als het niets meet.","Když na P0 není nic připojeno, micro:bit ukazuje libovolnou hodnotu (například 1,1). Pin je „ve vzduchu“ a údaj nemá význam: přístroj ukazuje číslo vždy, i když nic neměří.","P0'a hiçbir şey bağlı değilken micro:bit rastgele bir değer gösterir (örneğin 1,1). Pin boştadır ve bu okumanın anlamı yoktur: bir alet hiçbir şey ölçmese bile her zaman bir sayı gösterir."],
+touchNote:["Não usem o bloco «pin pressionado» para testar componentes: foi feito para detetar o toque de um dedo e reage até à pele.","Do not use the 'pin is pressed' block to test components: it is designed to detect a finger and even reacts to skin.","Nutzt den Block „Pin gedrückt“ nicht zum Testen von Bauteilen: Er erkennt Fingerberührungen und reagiert sogar auf Haut.","N'utilisez pas le bloc « broche pressée » pour tester des composants : il est conçu pour détecter un doigt et réagit même à la peau.","Gebruik het blok 'pin ingedrukt' niet om onderdelen te testen: het is gemaakt om een vinger te detecteren en reageert zelfs op huid.","Nepoužívejte k testování součástek blok „pin stisknut“: je určený k detekci prstu a reaguje i na kůži.","Bileşenleri test etmek için 'pin basıldı' bloğunu kullanmayın: parmak dokunuşunu algılamak için yapılmıştır ve cilde bile tepki verir."],
+b_pause:["pausa (ms) 1000","pause (ms) 1000","pausiere (ms) 1000","pause (ms) 1000","pauzeer (ms) 1000","pozastavit (ms) 1000","duraklat (ms) 1000"]
+});
+/* nomes dos blocos como aparecem no MakeCode em português */
+I.b_onstart[0]="Ao iniciar";I.b_forever[0]="sempre";I.b_pull[0]="definir pull pin P1 para para cima";
+I.b_if[0]="se leitura digital pin P1 = 0 então";I.b_yes[0]="mostrar ícone ✓";I.b_else[0]="senão";I.b_no[0]="mostrar ícone ✗";
+I.b_setv[0]="definir v para leitura analógica pin P0 × 3.3 ÷ 1023";I.b_shown[0]="mostrar número v";I.b_write[0]="gravação digital pin P0 para 1";
+
+Object.assign(I,{
+b_write0:["gravação digital pin P0 para 0","digital write pin P0 to 0","schreibe digital Pin P0 auf 0","écrire sur la broche numérique P0 la valeur 0","digitaal schrijven pin P0 naar 0","zapiš digitálně pin P0 na 0","dijital yaz pin P0 değer 0"],
+b_square:["mostrar ícone ◻","show icon ◻","zeige Symbol ◻","montrer l'icône ◻","toon pictogram ◻","ukaž ikonu ◻","simge göster ◻"],
+b_clear:["limpar ecrã","clear screen","Bildschirm löschen","effacer l'écran","scherm wissen","vymazat displej","ekranı temizle"],
+ledDesc:["Perna comprida ao P0, perna curta ao GND. Se o LED não acender, troquem as pernas; se continuar apagado, está fundido.","Long leg to P0, short leg to GND. If the LED does not light, swap the legs; if it still stays off, it is burnt out.","Langes Bein an P0, kurzes Bein an GND. Leuchtet die LED nicht, tauscht die Beinchen; bleibt sie dunkel, ist sie durchgebrannt.","Patte longue à P0, patte courte à GND. Si la LED ne s'allume pas, inversez les pattes ; si elle reste éteinte, elle est grillée.","Lang pootje naar P0, kort pootje naar GND. Brandt de led niet, wissel dan de pootjes; blijft hij uit, dan is hij doorgebrand.","Dlouhou nožičku na P0, krátkou na GND. Pokud LED nesvítí, prohoďte nožičky; pokud zůstane zhasnutá, je spálená.","Uzun bacak P0'a, kısa bacak GND'ye. LED yanmazsa bacakları ters çevirin; yine yanmıyorsa yanmıştır."]
+});
+GUIDE[4][3]=["Perna comprida ao P0, curta ao GND; programa que liga o P0.","Long leg to P0, short leg to GND; program that switches P0 on.","Langes Bein an P0, kurzes an GND; Programm, das P0 einschaltet.","Patte longue à P0, courte à GND ; programme qui active P0.","Lang pootje naar P0, kort naar GND; programma dat P0 aanzet.","Dlouhá nožička na P0, krátká na GND; program, který zapne P0.","Uzun bacak P0'a, kısa bacak GND'ye; P0'ı açan program."];
+
+Object.assign(I,{
+diagS:["Ponto de partida","Starting point","Ausgangspunkt","Point de départ","Startpunt","Výchozí bod","Başlangıç noktası"],
+diagS2:["Ponto de chegada","End point","Endpunkt","Point d'arrivée","Eindpunt","Cílový bod","Varış noktası"],
+diagN:["O que fazes?","What do you do?","Was tust du?","Que fais-tu ?","Wat doe je?","Co uděláš?","Ne yaparsın?"],
+scnH:["Quando um aparelho deixa de funcionar","When a device stops working","Wenn ein Gerät nicht mehr funktioniert","Quand un appareil cesse de fonctionner","Als een apparaat het niet meer doet","Když zařízení přestane fungovat","Bir cihaz çalışmayı bıraktığında"],
+scnLead:["Antes de começar, uma situação do dia a dia. Escolham o que fariam de verdade, não o que acham que é a resposta certa. Ao lado, vejam as consequências ambientais de cada decisão.","Before you start, an everyday situation. Choose what you would really do, not what you think is the right answer. Alongside, see the environmental consequences of each decision.","Vor dem Start eine Alltagssituation. Wählt, was ihr wirklich tun würdet, nicht das, was ihr für die richtige Antwort haltet. Daneben seht ihr die Umweltfolgen jeder Entscheidung.","Avant de commencer, une situation du quotidien. Choisissez ce que vous feriez vraiment, pas ce que vous pensez être la bonne réponse. À côté, voyez les conséquences environnementales de chaque décision.","Eerst een situatie uit het dagelijks leven. Kies wat jullie echt zouden doen, niet wat jullie denken dat het juiste antwoord is. Ernaast zien jullie de gevolgen voor het milieu van elke keuze.","Než začnete, jedna situace ze všedního dne. Vyberte, co byste opravdu udělali, ne to, co považujete za správnou odpověď. Vedle uvidíte dopady každého rozhodnutí na životní prostředí.","Başlamadan önce gündelik bir durum. Doğru cevap olduğunu düşündüğünüzü değil, gerçekten ne yapacağınızı seçin. Yanında her kararın çevresel sonuçlarını görün."],
+scnLeadPost:["Depois do laboratório, voltem à mesma situação e escolham outra vez o que fariam agora.","After the lab, return to the same situation and choose again what you would do now.","Kehrt nach dem Labor zur selben Situation zurück und wählt noch einmal, was ihr jetzt tun würdet.","Après le laboratoire, revenez à la même situation et choisissez à nouveau ce que vous feriez maintenant.","Ga na het lab terug naar dezelfde situatie en kies opnieuw wat jullie nu zouden doen.","Po laboratoři se vraťte ke stejné situaci a znovu vyberte, co byste udělali teď.","Laboratuvardan sonra aynı duruma dönün ve şimdi ne yapacağınızı yeniden seçin."],
+envH:["Consequências ambientais","Environmental consequences","Umweltfolgen","Conséquences environnementales","Gevolgen voor het milieu","Dopady na životní prostředí","Çevresel sonuçlar"],
+m1:["Lixo eletrónico","E-waste","Elektroschrott","Déchets électroniques","E-waste","Elektroodpad","Elektronik atık"],
+m2:["Extração de recursos e energia","Resource extraction and energy","Rohstoffabbau und Energie","Extraction de ressources et énergie","Grondstofwinning en energie","Těžba surovin a energie","Hammadde çıkarımı ve enerji"],
+m3:["Custo para ti","Cost to you","Kosten für dich","Coût pour toi","Kosten voor jou","Náklady pro tebe","Sana maliyeti"],
+lvLow:["baixo","low","niedrig","faible","laag","nízké","düşük"],lvMid:["médio","medium","mittel","moyen","gemiddeld","střední","orta"],lvHigh:["alto","high","hoch","élevé","hoog","vysoké","yüksek"],
+envWait:["Façam uma escolha para ver as consequências.","Make a choice to see the consequences.","Trefft eine Wahl, um die Folgen zu sehen.","Faites un choix pour voir les conséquences.","Maak een keuze om de gevolgen te zien.","Vyberte možnost a uvidíte dopady.","Sonuçları görmek için bir seçim yapın."],
+ladderH:["Escada da autonomia digital","Digital autonomy ladder","Leiter der digitalen Autonomie","Échelle de l'autonomie numérique","Ladder van digitale autonomie","Žebřík digitální autonomie","Dijital özerklik merdiveni"],
+lv0:["Substituir","Replace","Ersetzen","Remplacer","Vervangen","Nahradit","Değiştirmek"],lv1:["Delegar","Delegate","Delegieren","Déléguer","Uitbesteden","Delegovat","Başkasına bırakmak"],
+restart:["Experimentar outro caminho","Try another path","Einen anderen Weg ausprobieren","Essayer un autre chemin","Een andere weg proberen","Zkusit jinou cestu","Başka bir yol dene"],
+recorded:["A vossa primeira escolha ficou registada. Podem explorar os outros caminhos.","Your first choice has been recorded. You can explore the other paths.","Eure erste Wahl wurde gespeichert. Ihr könnt die anderen Wege erkunden.","Votre premier choix a été enregistré. Vous pouvez explorer les autres chemins.","Jullie eerste keuze is opgeslagen. Jullie kunnen de andere wegen verkennen.","Vaše první volba byla zaznamenána. Můžete prozkoumat i ostatní cesty.","İlk seçiminiz kaydedildi. Diğer yolları da keşfedebilirsiniz."],
+reached:["Chegaram ao degrau:","You reached the step:","Ihr habt diese Stufe erreicht:","Vous avez atteint le niveau :","Jullie bereikten de trede:","Dosáhli jste stupně:","Ulaştığınız basamak:"],
+labMsg:["Este laboratório treina o caminho que sobe a escada: compreender, diagnosticar, reparar e criar.","This lab trains the path that climbs the ladder: understand, diagnose, repair and create.","Dieses Labor trainiert den Weg, der die Leiter hinaufführt: verstehen, diagnostizieren, reparieren und erschaffen.","Ce laboratoire entraîne le chemin qui monte l'échelle : comprendre, diagnostiquer, réparer et créer.","Dit lab traint de weg omhoog op de ladder: begrijpen, diagnosticeren, repareren en creëren.","Tato laboratoř trénuje cestu vzhůru po žebříku: porozumět, diagnostikovat, opravit a vytvořit.","Bu laboratuvar merdiveni tırmanan yolu çalıştırır: anlamak, teşhis etmek, onarmak ve üretmek."],
+atStart:["No início escolheram:","At the start you chose:","Am Anfang habt ihr gewählt:","Au début, vous avez choisi :","Aan het begin kozen jullie:","Na začátku jste zvolili:","Başlangıçta seçtiğiniz:"],
+nowChose:["Agora escolheram:","Now you chose:","Jetzt habt ihr gewählt:","Maintenant, vous avez choisi :","Nu kozen jullie:","Teď jste zvolili:","Şimdi seçtiğiniz:"],
+notDone:["ainda não feito","not done yet","noch nicht gemacht","pas encore fait","nog niet gedaan","zatím neprovedeno","henüz yapılmadı"],
+factsH:["Sabiam que…","Did you know…","Wusstet ihr…","Le saviez-vous…","Wist je dat…","Víte, že…","Biliyor muydunuz…"],
+diagSec:["Diagnóstico de autonomia digital","Digital autonomy diagnosis","Diagnose der digitalen Autonomie","Diagnostic d'autonomie numérique","Diagnose van digitale autonomie","Diagnostika digitální autonomie","Dijital özerklik tanılaması"],
+diagFirst:["Primeira escolha","First choice","Erste Wahl","Premier choix","Eerste keuze","První volba","İlk seçim"],
+diagEnd:["Degrau alcançado","Step reached","Erreichte Stufe","Niveau atteint","Bereikte trede","Dosažený stupeň","Ulaşılan basamak"],
+diagPre:["Início do módulo","Start of the module","Beginn des Moduls","Début du module","Begin van de module","Začátek modulu","Modülün başı"],
+diagPost:["Fim do módulo","End of the module","Ende des Moduls","Fin du module","Einde van de module","Konec modulu","Modülün sonu"]
+});
+const FACTS=[
+ ["Em 2022 produziram-se 62 milhões de toneladas de lixo eletrónico no mundo, cerca de 7,8 kg por pessoa. Só 22,3% foram recolhidos e reciclados de forma documentada (Global E-waste Monitor 2024).","In 2022 the world produced 62 million tonnes of e-waste, about 7.8 kg per person. Only 22.3% was documented as collected and recycled (Global E-waste Monitor 2024).","2022 entstanden weltweit 62 Millionen Tonnen Elektroschrott, etwa 7,8 kg pro Person. Nur 22,3 % wurden nachweislich gesammelt und recycelt (Global E-waste Monitor 2024).","En 2022, le monde a produit 62 millions de tonnes de déchets électroniques, environ 7,8 kg par personne. Seuls 22,3 % ont été collectés et recyclés de façon documentée (Global E-waste Monitor 2024).","In 2022 produceerde de wereld 62 miljoen ton e-waste, ongeveer 7,8 kg per persoon. Slechts 22,3% werd aantoonbaar ingezameld en gerecycled (Global E-waste Monitor 2024).","V roce 2022 vzniklo na světě 62 milionů tun elektroodpadu, asi 7,8 kg na osobu. Doloženě sebráno a recyklováno bylo jen 22,3 % (Global E-waste Monitor 2024).","2022'de dünyada 62 milyon ton elektronik atık üretildi; kişi başına yaklaşık 7,8 kg. Bunun yalnızca %22,3'ünün toplanıp geri dönüştürüldüğü belgelendi (Global E-waste Monitor 2024)."],
+ ["Os pequenos aparelhos, como brinquedos e pequenos eletrodomésticos, são um terço do lixo eletrónico e só 12% são reciclados (Global E-waste Monitor 2024).","Small devices, such as toys and small appliances, make up a third of e-waste, and only 12% of them are recycled (Global E-waste Monitor 2024).","Kleingeräte wie Spielzeug und kleine Haushaltsgeräte machen ein Drittel des Elektroschrotts aus; nur 12 % davon werden recycelt (Global E-waste Monitor 2024).","Les petits appareils, comme les jouets et le petit électroménager, représentent un tiers des déchets électroniques, et seuls 12 % sont recyclés (Global E-waste Monitor 2024).","Kleine apparaten, zoals speelgoed en kleine huishoudelijke apparaten, vormen een derde van het e-waste; slechts 12% daarvan wordt gerecycled (Global E-waste Monitor 2024).","Malá zařízení, jako hračky a drobné spotřebiče, tvoří třetinu elektroodpadu a recykluje se jich jen 12 % (Global E-waste Monitor 2024).","Oyuncaklar ve küçük ev aletleri gibi küçük cihazlar elektronik atığın üçte birini oluşturur ve yalnızca %12'si geri dönüştürülür (Global E-waste Monitor 2024)."],
+ ["Desde 31 de julho de 2026, os Estados-Membros da UE têm de aplicar a diretiva do direito à reparação. Quem escolhe reparar em vez de substituir, dentro da garantia legal, ganha mais um ano de garantia.","Since 31 July 2026, EU member states must apply the Right to Repair Directive. If you choose repair instead of replacement under the legal guarantee, you get an extra year of guarantee.","Seit dem 31. Juli 2026 müssen die EU-Mitgliedstaaten die Richtlinie zum Recht auf Reparatur anwenden. Wer innerhalb der gesetzlichen Gewährleistung Reparatur statt Ersatz wählt, erhält ein zusätzliches Jahr Gewährleistung.","Depuis le 31 juillet 2026, les États membres de l'UE doivent appliquer la directive sur le droit à la réparation. Si vous choisissez la réparation plutôt que le remplacement sous garantie légale, vous obtenez une année de garantie supplémentaire.","Sinds 31 juli 2026 moeten de EU-lidstaten de richtlijn over het recht op reparatie toepassen. Wie binnen de wettelijke garantie kiest voor reparatie in plaats van vervanging, krijgt een extra jaar garantie.","Od 31. července 2026 musí členské státy EU uplatňovat směrnici o právu na opravu. Kdo v rámci zákonné záruky zvolí opravu místo výměny, získá rok záruky navíc.","31 Temmuz 2026'dan beri AB üye devletleri Onarım Hakkı Direktifi'ni uygulamak zorunda. Yasal garanti kapsamında değiştirme yerine onarımı seçen kişi bir yıl ek garanti alır."]
+];
+/* árvore de decisão: q = pergunta; c = [rótulo, destino]; fim: lv (degrau 0–5), env [lixo, recursos, custo], t (texto) */
+const SC={
+ start:{xy:[20,130],q:["O comando da televisão deixou de funcionar. O que fazem?","The TV remote has stopped working. What do you do?","Die Fernbedienung des Fernsehers funktioniert nicht mehr. Was tut ihr?","La télécommande de la télévision ne fonctionne plus. Que faites-vous ?","De afstandsbediening van de tv doet het niet meer. Wat doen jullie?","Ovladač k televizi přestal fungovat. Co uděláte?","Televizyon kumandası çalışmıyor. Ne yaparsınız?"],
+  c:[[["Deitar fora e comprar outro","Throw it away and buy a new one","Wegwerfen und eine neue kaufen","La jeter et en acheter une autre","Weggooien en een nieuwe kopen","Vyhodit ho a koupit nový","Atıp yenisini almak"],"e_buy"],
+     [["Pedir a alguém que resolva","Ask someone to fix it","Jemanden bitten, sie zu reparieren","Demander à quelqu'un de la réparer","Iemand vragen het op te lossen","Požádat někoho, ať to vyřeší","Birinden onarmasını istemek"],"e_ask"],
+     [["Investigar primeiro","Investigate first","Zuerst nachforschen","Enquêter d'abord","Eerst onderzoeken","Nejdřív to prozkoumat","Önce araştırmak"],"inv"]]},
+ inv:{xy:[115,175],q:["Por onde começam?","Where do you start?","Womit fangt ihr an?","Par où commencez-vous ?","Waar beginnen jullie?","Čím začnete?","Nereden başlarsınız?"],
+  c:[[["Trocar as pilhas","Change the batteries","Die Batterien wechseln","Changer les piles","De batterijen vervangen","Vyměnit baterie","Pilleri değiştirmek"],"bat"],
+     [["Ver se emite luz infravermelha","Check whether it emits infrared light","Prüfen, ob sie Infrarotlicht aussendet","Vérifier si elle émet de la lumière infrarouge","Kijken of hij infrarood licht uitzendt","Zjistit, zda vysílá infračervené světlo","Kızılötesi ışık yayıp yaymadığına bakmak"],"ir"],
+     [["Abrir o comando","Open the remote","Die Fernbedienung öffnen","Ouvrir la télécommande","De afstandsbediening openen","Otevřít ovladač","Kumandayı açmak"],"open"]]},
+ bat:{xy:[205,115],q:["Trocam as pilhas por pilhas novas. O comando volta a funcionar?","You put in new batteries. Does the remote work again?","Ihr setzt neue Batterien ein. Funktioniert die Fernbedienung wieder?","Vous mettez des piles neuves. La télécommande fonctionne-t-elle à nouveau ?","Jullie plaatsen nieuwe batterijen. Werkt de afstandsbediening weer?","Vložíte nové baterie. Funguje ovladač znovu?","Yeni pil takıyorsunuz. Kumanda yeniden çalışıyor mu?"],
+  c:[[["Sim, funciona","Yes, it works","Ja, sie funktioniert","Oui, elle fonctionne","Ja, hij werkt","Ano, funguje","Evet, çalışıyor"],"e_bat"],
+     [["Não, continua igual","No, nothing changes","Nein, nichts ändert sich","Non, rien ne change","Nee, er verandert niets","Ne, nic se nezměnilo","Hayır, değişen bir şey yok"],"ir"]]},
+ ir:{xy:[255,170],q:["Apontam o comando para a câmara do telemóvel e carregam num botão. Veem uma luz no ecrã do telemóvel?","You point the remote at a phone camera and press a button. Do you see a light on the phone screen?","Ihr richtet die Fernbedienung auf eine Handykamera und drückt eine Taste. Seht ihr ein Licht auf dem Handydisplay?","Vous pointez la télécommande vers la caméra d'un téléphone et appuyez sur un bouton. Voyez-vous une lumière sur l'écran du téléphone ?","Jullie richten de afstandsbediening op een telefooncamera en drukken op een knop. Zien jullie een lichtje op het scherm?","Namíříte ovladač na kameru telefonu a stisknete tlačítko. Vidíte na displeji telefonu světlo?","Kumandayı bir telefon kamerasına doğrultup bir düğmeye basıyorsunuz. Telefon ekranında ışık görüyor musunuz?"],
+  c:[[["Sim, vejo a luz","Yes, I see the light","Ja, ich sehe das Licht","Oui, je vois la lumière","Ja, ik zie het licht","Ano, vidím světlo","Evet, ışığı görüyorum"],"e_tv"],
+     [["Não vejo nada","I see nothing","Ich sehe nichts","Je ne vois rien","Ik zie niets","Nevidím nic","Hiçbir şey görmüyorum"],"open"]]},
+ open:{xy:[300,222],q:["Abrem o comando: parafusos e clipes. O que encontram?","You open the remote: screws and clips. What do you find?","Ihr öffnet die Fernbedienung: Schrauben und Clips. Was findet ihr?","Vous ouvrez la télécommande : vis et clips. Que trouvez-vous ?","Jullie openen de afstandsbediening: schroeven en clips. Wat vinden jullie?","Otevřete ovladač: šrouby a západky. Co najdete?","Kumandayı açıyorsunuz: vidalar ve klipsler. Ne buluyorsunuz?"],
+  c:[[["Contactos com manchas verdes","Contacts with green stains","Kontakte mit grünen Flecken","Des contacts avec des taches vertes","Contacten met groene vlekken","Kontakty se zelenými skvrnami","Yeşil lekeli kontaklar"],"e_fix"],
+     [["Uma peça de plástico partida","A broken plastic part","Ein gebrochenes Kunststoffteil","Une pièce en plastique cassée","Een gebroken plastic onderdeel","Prasklý plastový díl","Kırık bir plastik parça"],"e_3d"],
+     [["A placa está queimada","The circuit board is burnt","Die Platine ist verbrannt","La carte électronique est grillée","De printplaat is doorgebrand","Deska je spálená","Devre kartı yanmış"],"e_reuse"]]},
+ e_buy:{xy:[115,30],lv:0,env:[90,90,70],t:["Compraram um comando novo. Resolve depressa, mas o antigo vai para o lixo e fabricar o novo gasta plástico, metais e energia. Se o problema eram só as pilhas, o comando antigo ainda funcionava.","You bought a new remote. It is quick, but the old one goes in the bin, and making the new one uses plastic, metals and energy. If the problem was just the batteries, the old remote still worked.","Ihr habt eine neue Fernbedienung gekauft. Das geht schnell, aber die alte landet im Müll, und die Herstellung der neuen verbraucht Kunststoff, Metalle und Energie. Lag es nur an den Batterien, hätte die alte noch funktioniert.","Vous avez acheté une nouvelle télécommande. C'est rapide, mais l'ancienne part à la poubelle et la fabrication de la nouvelle consomme du plastique, des métaux et de l'énergie. Si le problème venait seulement des piles, l'ancienne fonctionnait encore.","Jullie kochten een nieuwe afstandsbediening. Dat gaat snel, maar de oude belandt in de vuilnisbak en voor de nieuwe zijn plastic, metalen en energie nodig. Lag het alleen aan de batterijen, dan werkte de oude nog.","Koupili jste nový ovladač. Je to rychlé, ale starý skončí v koši a výroba nového spotřebuje plast, kovy a energii. Pokud byly problémem jen baterie, starý ovladač pořád fungoval.","Yeni bir kumanda aldınız. Hızlı oldu ama eskisi çöpe gidiyor ve yenisini üretmek plastik, metal ve enerji harcıyor. Sorun yalnızca pillerse eski kumanda hâlâ çalışıyordu."]},
+ e_ask:{xy:[115,80],lv:1,env:[30,30,50],t:["Pediram ajuda a alguém ou a uma loja. Se o repararem, o comando continua em uso, mas vocês não aprenderam a resolver. Se disserem que não compensa, voltam ao ponto de partida.","You asked someone or a shop for help. If they repair it, the remote stays in use, but you did not learn how to fix it. If they say it is not worth it, you are back where you started.","Ihr habt jemanden oder ein Geschäft um Hilfe gebeten. Wird sie repariert, bleibt die Fernbedienung in Gebrauch, aber ihr habt nicht gelernt, sie selbst zu reparieren. Heißt es, das lohnt sich nicht, seid ihr wieder am Anfang.","Vous avez demandé de l'aide à quelqu'un ou à un magasin. Si on la répare, la télécommande reste utilisée, mais vous n'avez pas appris à la réparer. Si on vous dit que ça ne vaut pas la peine, vous revenez au point de départ.","Jullie vroegen iemand of een winkel om hulp. Wordt hij gerepareerd, dan blijft de afstandsbediening in gebruik, maar jullie leerden niet hoe je hem repareert. Zeggen ze dat het niet loont, dan staan jullie weer bij het begin.","Požádali jste o pomoc někoho nebo obchod. Pokud ovladač opraví, zůstane v provozu, ale vy jste se nenaučili ho opravit. Pokud řeknou, že se to nevyplatí, jste zpátky na začátku.","Birinden ya da bir dükkândan yardım istediniz. Onarırlarsa kumanda kullanılmaya devam eder ama siz onarmayı öğrenmemiş olursunuz. Değmeyeceğini söylerlerse başa dönersiniz."]},
+ e_bat:{xy:[360,85],lv:3,env:[10,10,10],t:["Eram as pilhas! Com um teste simples evitaram comprar um comando novo. Levem as pilhas gastas ao ponto de recolha: têm metais que se recuperam.","It was the batteries! A simple test saved you from buying a new remote. Take the used batteries to a collection point: their metals can be recovered.","Es waren die Batterien! Ein einfacher Test hat euch den Kauf einer neuen Fernbedienung erspart. Bringt die leeren Batterien zur Sammelstelle: Ihre Metalle lassen sich zurückgewinnen.","C'étaient les piles ! Un simple test vous a évité d'acheter une nouvelle télécommande. Déposez les piles usagées dans un point de collecte : leurs métaux peuvent être récupérés.","Het waren de batterijen! Een eenvoudige test bespaarde jullie een nieuwe afstandsbediening. Breng de lege batterijen naar een inzamelpunt: hun metalen kunnen worden teruggewonnen.","Byly to baterie! Jednoduchý test vás ušetřil nákupu nového ovladače. Vybité baterie odneste do sběrného místa: kovy z nich se dají znovu získat.","Sorun pillermiş! Basit bir test sizi yeni kumanda almaktan kurtardı. Biten pilleri toplama noktasına götürün: metalleri geri kazanılabilir."]},
+ e_tv:{xy:[360,140],lv:2,env:[5,5,5],t:["O comando emite luz infravermelha: o problema não está nele. Pode ser o recetor da televisão ou algo à frente dele. Compreender o sistema evitou trocar a peça errada.","The remote is sending infrared light, so the problem is not the remote. It may be the TV's receiver or something blocking it. Understanding the system stopped you from replacing the wrong part.","Die Fernbedienung sendet Infrarotlicht, also liegt das Problem nicht bei ihr. Es kann der Empfänger des Fernsehers sein oder etwas, das ihn verdeckt. Das System zu verstehen hat verhindert, das falsche Teil zu ersetzen.","La télécommande émet de la lumière infrarouge : le problème ne vient pas d'elle. Ce peut être le récepteur de la télévision ou un obstacle devant lui. Comprendre le système vous a évité de remplacer la mauvaise pièce.","De afstandsbediening zendt infrarood licht uit, dus het probleem ligt niet bij haar. Het kan de ontvanger van de tv zijn of iets wat ervoor staat. Door het systeem te begrijpen vervingen jullie niet het verkeerde onderdeel.","Ovladač vysílá infračervené světlo, takže problém není v něm. Může to být přijímač televize nebo něco, co ho zakrývá. Pochopení systému vám ušetřilo výměnu nesprávného dílu.","Kumanda kızılötesi ışık yayıyor; yani sorun onda değil. Televizyonun alıcısı ya da önündeki bir engel olabilir. Sistemi anlamak yanlış parçayı değiştirmenizi önledi."]},
+ e_fix:{xy:[360,190],lv:4,env:[5,5,5],t:["Os contactos estavam corroídos. Com um cotonete e um pouco de vinagre, limparam-nos e o comando voltou a funcionar. Zero lixo, quase zero custo.","The contacts were corroded. You cleaned them with a cotton bud and a little vinegar, and the remote works again. Zero waste, almost zero cost.","Die Kontakte waren korrodiert. Mit einem Wattestäbchen und etwas Essig habt ihr sie gereinigt, und die Fernbedienung funktioniert wieder. Kein Abfall, fast keine Kosten.","Les contacts étaient corrodés. Avec un coton-tige et un peu de vinaigre, vous les avez nettoyés et la télécommande fonctionne à nouveau. Zéro déchet, presque zéro coût.","De contacten waren gecorrodeerd. Met een wattenstaafje en wat azijn maakten jullie ze schoon en de afstandsbediening werkt weer. Geen afval, bijna geen kosten.","Kontakty byly zkorodované. Vyčistili jste je vatovou tyčinkou a trochou octa a ovladač zase funguje. Žádný odpad, skoro žádné náklady.","Kontaklar paslanmıştı. Bir kulak çubuğu ve biraz sirkeyle temizlediniz, kumanda yeniden çalışıyor. Sıfır atık, neredeyse sıfır maliyet."]},
+ e_3d:{xy:[360,220],lv:4,env:[10,15,15],t:["Uma peça de plástico partiu-se. Mediram-na, desenharam-na e imprimiram-na em 3D. Gasta-se um pouco de plástico e energia, muito menos do que fabricar um comando inteiro.","A plastic part had broken. You measured it, designed it and printed it in 3D. It uses a little plastic and energy, far less than making a whole new remote.","Ein Kunststoffteil war gebrochen. Ihr habt es vermessen, entworfen und im 3D-Druck hergestellt. Das braucht etwas Kunststoff und Energie, viel weniger als eine ganz neue Fernbedienung.","Une pièce en plastique s'était cassée. Vous l'avez mesurée, dessinée et imprimée en 3D. Cela consomme un peu de plastique et d'énergie, bien moins que fabriquer une télécommande entière.","Er was een plastic onderdeel gebroken. Jullie maten het op, ontwierpen het en printten het in 3D. Dat kost wat plastic en energie, veel minder dan een hele nieuwe afstandsbediening maken.","Prasklý byl plastový díl. Změřili jste ho, navrhli a vytiskli na 3D tiskárně. Spotřebuje se trochu plastu a energie, mnohem méně než na výrobu celého nového ovladače.","Plastik bir parça kırılmıştı. Ölçtünüz, tasarladınız ve 3B yazıcıda bastınız. Biraz plastik ve enerji harcanır; yeni bir kumanda üretmekten çok daha azı."]},
+ e_reuse:{xy:[360,250],lv:5,env:[35,20,10],t:["A placa estava queimada e não tinha reparação. Guardaram o LED infravermelho, as molas e os botões para um projeto novo e levaram o resto ao ponto de recolha de eletrónicos.","The circuit board was burnt and could not be repaired. You kept the infrared LED, the springs and the buttons for a new project and took the rest to an e-waste collection point.","Die Platine war verbrannt und nicht mehr zu reparieren. Ihr habt die Infrarot-LED, die Federn und die Tasten für ein neues Projekt behalten und den Rest zur Elektroschrott-Sammelstelle gebracht.","La carte électronique était grillée et irréparable. Vous avez gardé la LED infrarouge, les ressorts et les boutons pour un nouveau projet et déposé le reste dans un point de collecte des déchets électroniques.","De printplaat was doorgebrand en niet meer te repareren. Jullie bewaarden de infrarood-led, de veren en de knoppen voor een nieuw project en brachten de rest naar een inzamelpunt voor e-waste.","Deska plošných spojů byla spálená a nedala se opravit. Infračervenou LED, pružinky a tlačítka jste si nechali na nový projekt a zbytek jste odnesli do sběru elektroodpadu.","Devre kartı yanmıştı ve onarılamıyordu. Kızılötesi LED'i, yayları ve düğmeleri yeni bir proje için sakladınız, gerisini elektronik atık toplama noktasına götürdünüz."]}
+};
+const LVKEYS=["lv0","lv1","au1","au2","au3","au4"];
+const LVCOL=["#b00d46","#c9622e","#c98a12","#8aa636","#3f9b57","#215e99"];
+const scnRun={pre:{path:["start"]},post:{path:["start"]}};
+function scnLevelWord(v){return t(v<25?"lvLow":v<60?"lvMid":"lvHigh");}
+function scnFirstLabel(rec){if(!rec)return t("notDone");const ch=SC.start.c.find(c=>c[1]===rec.first);return ch?tx(ch[0]):"";}
+function scnTreeSVG(path){
+  const edges=[];Object.entries(SC).forEach(([k,n])=>(n.c||[]).forEach(([,to])=>edges.push([k,to])));
+  const onPath=(a,b)=>{for(let i=0;i<path.length-1;i++)if(path[i]===a&&path[i+1]===b)return true;return false;};
+  const line=([a,b])=>{const A=SC[a].xy,B=SC[b].xy,on=onPath(a,b);const d=`M${A[0]},${A[1]} C${(A[0]+B[0])/2},${A[1]} ${(A[0]+B[0])/2},${B[1]} ${B[0]},${B[1]}`;
+    return `<path d="${d}" fill="none" stroke="${on?"#215e99":"#d3dbe4"}" stroke-width="${on?4:2}" ${on?'class="drawn" pathLength="1"':""}/>`;};
+  const nodes=Object.entries(SC).map(([k,n])=>{const on=path.includes(k),end=n.lv!=null;const r=end?9:7;const fill=end?(on?LVCOL[n.lv]:"#fff"):(on?"#215e99":"#fff");const st=end?LVCOL[n.lv]:(on?"#215e99":"#b9c4cf");
+    return `<circle cx="${n.xy[0]}" cy="${n.xy[1]}" r="${r}" fill="${fill}" stroke="${st}" stroke-width="2.5"${on&&k===path.at(-1)?' class="pulse"':""}/>`;}).join("");
+  return `<svg viewBox="0 0 380 265" class="scn-tree" role="img" aria-hidden="true">${edges.filter(e=>!onPath(...e)).map(line).join("")}${edges.filter(e=>onPath(...e)).map(line).join("")}${nodes}</svg>`;
+}
+function renderScenario(mode){
+  const root=document.querySelector(`[data-scn="${mode}"]`);if(!root)return;
+  S.diag=S.diag||{};const run=scnRun[mode];const cur=run.path.at(-1);const node=SC[cur];const end=node.lv!=null;
+  const crumbs=run.path.slice(1).map((k,i)=>{const prev=SC[run.path[i]];const ch=(prev.c||[]).find(c=>c[1]===k);return ch?`<span class="crumb" style="animation-delay:${i===run.path.length-2?0:0}s">${esc(tx(ch[0]))}</span>`:"";}).join('<span class="arrow" aria-hidden="true">→</span>');
+  const env=end?node.env:null;
+  const meters=["m1","m2","m3"].map((k,i)=>`<div class="meter"><div class="row" style="justify-content:space-between"><span>${esc(t(k))}</span><b>${env?esc(scnLevelWord(env[i])):"—"}</b></div><div class="bar"><i style="width:${env?env[i]:0}%;background:${env?(env[i]<25?"#3f9b57":env[i]<60?"#c98a12":"#b00d46"):"transparent"}"></i></div></div>`).join("");
+  const ladder=LVKEYS.map((k,i)=>`<li class="${end&&node.lv===i?"on":""}" style="--c:${LVCOL[i]}"><span class="dot"></span>${esc(t(k))}</li>`).reverse().join("");
+  const rec=S.diag[mode];
+  let compare="";
+  if(mode==="post"&&end){const pre=S.diag.pre,post=S.diag.post;compare=`<div class="note"><p><b>${esc(t("atStart"))}</b> ${esc(scnFirstLabel(pre))}${pre?` → ${esc(t(LVKEYS[SC[pre.end].lv]))}`:""}</p><p><b>${esc(t("nowChose"))}</b> ${esc(scnFirstLabel(post))}${post?` → ${esc(t(LVKEYS[SC[post.end].lv]))}`:""}</p></div>`;}
+  root.innerHTML=`<div class="qs">${mode==="pre"?"":`<h2>${esc(t("scnH"))}</h2>`}<p class="lead">${esc(t(mode==="pre"?"scnLead":"scnLeadPost"))}</p></div>
+  <div class="scn-grid">
+    <div class="card scn-main">
+      ${cur==="start"?`<img class="scn-img" src="scn_start.jpg" alt="">`:""}
+      ${scnTreeSVG(run.path)}
+      <div class="crumbs">${crumbs}</div>
+      ${end?`<div class="scn-end" style="--c:${LVCOL[node.lv]}"><p class="scn-level">${esc(t("reached"))} <b>${esc(t(LVKEYS[node.lv]))}</b></p><p>${esc(tx(node.t))}</p></div>
+        ${rec?`<p class="hint">${esc(t("recorded"))}</p>`:""}${compare}<p class="muted">${esc(t("labMsg"))}</p>
+        <div class="row" style="gap:10px;flex-wrap:wrap"><button class="btn ghost" type="button" data-scn-restart="${mode}">${esc(t("restart"))}</button>${mode==="pre"?`<a class="btn" href="#licao1">${esc(t("toC1"))} →</a>`:`<a class="btn" href="#evidencias">${esc(t("evid"))} →</a>`}</div>`
+       :`<p class="scn-q">${esc(tx(node.q))}</p><div class="scn-choices">${node.c.map(([lab,to])=>`<button class="btn ghost scn-choice" type="button" data-scn-go="${to}" data-scn-mode="${mode}">${esc(tx(lab))}</button>`).join("")}</div>`}
+    </div>
+    <div class="card scn-side">
+      <h3>${esc(t("envH"))}</h3>${env?"":`<p class="muted">${esc(t("envWait"))}</p>`}${meters}
+      <h3 style="margin-top:14px">${esc(t("ladderH"))}</h3><ol class="ladder">${ladder}</ol>
+      <details class="facts" open><summary>${esc(t("factsH"))}</summary>${FACTS.map(f=>`<p>${esc(tx(f))}</p>`).join("")}</details>
+    </div>
+  </div>`;
+}
+document.addEventListener("click",e=>{
+  const g=e.target.closest("[data-scn-go]");
+  if(g){const mode=g.dataset.scnMode,to=g.dataset.scnGo,run=scnRun[mode];run.path.push(to);
+    if(SC[to].lv!=null){S.diag=S.diag||{};if(!S.diag[mode]){S.diag[mode]={first:run.path[1],end:to,path:run.path.slice()};save();}}
+    renderScenario(mode);return;}
+  const r=e.target.closest("[data-scn-restart]");if(r){scnRun[r.dataset.scnRestart].path=["start"];renderScenario(r.dataset.scnRestart);}
+});
+function diagKV(){const d=S.diag||{};const row=rec=>rec?`${scnFirstLabel(rec)} → ${t(LVKEYS[SC[rec.end].lv])}`:t("notDone");
+  return [[t("diagPre"),row(d.pre)],[t("diagPost"),row(d.post)]];}
+
+Object.assign(I,{
+probTag:["A problemática","The problem","Das Problem","La problématique","Het probleem","Problém","Sorun"],
+probH:["Porque deitamos fora aparelhos que ainda podiam funcionar?","Why do we throw away devices that could still work?","Warum werfen wir Geräte weg, die noch funktionieren könnten?","Pourquoi jetons-nous des appareils qui pourraient encore fonctionner ?","Waarom gooien we apparaten weg die nog zouden kunnen werken?","Proč vyhazujeme zařízení, která by ještě mohla fungovat?","Neden hâlâ çalışabilecek cihazları atıyoruz?"],
+probP:["Em 2022 o mundo produziu 62 milhões de toneladas de lixo eletrónico, e só cerca de um quinto foi reciclado de forma documentada. Muitos aparelhos vão para o lixo por causa de uma pilha gasta, um contacto sujo ou uma peça de plástico partida. Saber investigar, reparar e reinventar é uma forma de autonomia digital, e também uma forma de reduzir este problema.","In 2022 the world produced 62 million tonnes of e-waste, and only about a fifth was documented as recycled. Many devices are thrown away because of a flat battery, a dirty contact or a broken plastic part. Knowing how to investigate, repair and reinvent is a form of digital autonomy, and also a way to reduce this problem.","2022 entstanden weltweit 62 Millionen Tonnen Elektroschrott, und nur etwa ein Fünftel wurde nachweislich recycelt. Viele Geräte landen wegen einer leeren Batterie, eines verschmutzten Kontakts oder eines gebrochenen Kunststoffteils im Müll. Untersuchen, reparieren und neu erfinden zu können, ist eine Form digitaler Autonomie und zugleich ein Weg, dieses Problem zu verringern.","En 2022, le monde a produit 62 millions de tonnes de déchets électroniques, et seul un cinquième environ a été recyclé de façon documentée. Beaucoup d'appareils finissent à la poubelle à cause d'une pile vide, d'un contact sale ou d'une pièce en plastique cassée. Savoir enquêter, réparer et réinventer est une forme d'autonomie numérique, et aussi une façon de réduire ce problème.","In 2022 produceerde de wereld 62 miljoen ton e-waste, en slechts ongeveer een vijfde werd aantoonbaar gerecycled. Veel apparaten belanden in de vuilnisbak door een lege batterij, een vuil contact of een gebroken plastic onderdeel. Kunnen onderzoeken, repareren en heruitvinden is een vorm van digitale autonomie, en ook een manier om dit probleem te verkleinen.","V roce 2022 vzniklo na světě 62 milionů tun elektroodpadu a doloženě se recyklovala jen asi pětina. Mnoho zařízení skončí v koši kvůli vybité baterii, špinavému kontaktu nebo prasklému plastovému dílu. Umět zkoumat, opravovat a znovu vynalézat je formou digitální autonomie a zároveň způsobem, jak tento problém zmenšit.","2022'de dünyada 62 milyon ton elektronik atık üretildi ve bunun yalnızca yaklaşık beşte birinin geri dönüştürüldüğü belgelendi. Pek çok cihaz biten bir pil, kirli bir kontak ya da kırık bir plastik parça yüzünden çöpe gidiyor. Araştırmayı, onarmayı ve yeniden icat etmeyi bilmek bir dijital özerklik biçimidir ve bu sorunu azaltmanın da bir yoludur."],
+probQ:["E vocês, o que fazem quando um aparelho deixa de funcionar?","And you, what do you do when a device stops working?","Und ihr, was tut ihr, wenn ein Gerät nicht mehr funktioniert?","Et vous, que faites-vous quand un appareil cesse de fonctionner ?","En jullie, wat doen jullie als een apparaat het niet meer doet?","A co děláte vy, když zařízení přestane fungovat?","Peki siz, bir cihaz çalışmayı bıraktığında ne yaparsınız?"],
+toC1:["Começar o Challenge 1","Start Challenge 1","Challenge 1 starten","Commencer le Challenge 1","Challenge 1 starten","Začít Challenge 1","Challenge 1'e başla"]
+});
+function renderAll(){renderPager(currentView());renderScenario("pre");renderScenario("post");renderW3Imgs();renderSubmit();renderGuide();renderInstr();renderW1();if(!$("#w1-keybox").hidden)renderW1Key();renderIA();renderComps();renderW2();if(!$("#w2-keybox").hidden)renderW2Key();renderA4();renderAvail();renderW4();renderDrive();updateStatus();
   gearViews.forEach(v=>{const bt=v.el.querySelector('[data-z="0"]');if(bt)bt.textContent=t("g3dReset");});}
 applyMode();applyLang();route();
 </script>
